@@ -1,0 +1,45 @@
+package michapehlivan.discordbotlib;
+
+import java.security.KeyException;
+import java.util.Arrays;
+import java.util.List;
+
+import com.google.gson.JsonElement;
+
+import discord4j.core.spec.EmbedCreateSpec;
+import michapehlivan.discordbotlib.botclient.DiscordBot;
+import michapehlivan.discordbotlib.util.json.JsonReader;
+import michapehlivan.discordbotlib.util.json.JsonWriter;
+
+public class BotMain {
+    public static void main(String[] args) {
+        DiscordBot bot = new DiscordBot("token");
+        bot.setPrefix("-");
+        bot.status().online().playing(bot.getPrefix() + "help");
+
+        JsonWriter writer = new JsonWriter("src\\test\\java\\michapehlivan\\discordbotlib\\Test.json");
+        JsonReader reader = new JsonReader("src\\test\\java\\michapehlivan\\discordbotlib\\Test.json");
+        List<String> testList = Arrays.asList("entry1", "entry2");
+        
+        try {
+            writer.addObject("Key", "Value");
+            writer.addArray("Array", testList);
+            String value = reader.getValueAsString("Key");
+            JsonElement array = reader.getValueAsJsonElement("Array");
+            System.out.println(value);
+            System.out.println(array);
+        } catch (KeyException e) {
+            e.printStackTrace();
+        }
+
+        EmbedCreateSpec embed = EmbedCreateSpec.builder()
+            .title("test")
+            .addField("test", "test", false)
+            .build();
+
+        bot.addCommand("test", event -> 
+            event.getMessage().getChannel().block().createMessage(embed).then());
+
+        bot.getGateway().onDisconnect().block();
+    }
+}
