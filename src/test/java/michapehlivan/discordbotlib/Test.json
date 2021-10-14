@@ -1,1 +1,7 @@
-{}
+{
+  "Key": "Value",
+  "Array": [
+    "entry1",
+    "entry2"
+  ]
+}

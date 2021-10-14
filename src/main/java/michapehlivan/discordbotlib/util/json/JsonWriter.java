@@ -98,4 +98,16 @@ public class JsonWriter {
         }
     }
 
+    public void clearJson(){
+        file = new JsonObject();
+        FileWriter writer;
+        try {
+            writer = new FileWriter(jsonPath);
+            gson.toJson(file, writer);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

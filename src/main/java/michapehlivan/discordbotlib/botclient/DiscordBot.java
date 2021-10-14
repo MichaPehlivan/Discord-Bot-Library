@@ -2,10 +2,14 @@ package michapehlivan.discordbotlib.botclient;
 
 import discord4j.core.DiscordClient;
 import discord4j.core.GatewayDiscordClient;
+import discord4j.core.event.domain.interaction.ChatInputInteractionEvent;
+import discord4j.core.event.domain.interaction.MessageInteractionEvent;
+import discord4j.core.event.domain.interaction.UserInteractionEvent;
 import discord4j.core.event.domain.lifecycle.ReadyEvent;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import michapehlivan.discordbotlib.commands.Command;
 import michapehlivan.discordbotlib.commands.CommandManager;
+import michapehlivan.discordbotlib.interactions.applicationcommands.ApplicationCommandManager;
 import michapehlivan.discordbotlib.util.BotConsole;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -15,7 +19,7 @@ public class DiscordBot {
     private GatewayDiscordClient gateway;
     private BotStatus status;
     private String commandPrefix;
-    private static volatile boolean IN_EVENT = false;
+    private ApplicationCommandManager applicationCommandManager;
 
     public DiscordBot(String token){
         BotConsole console = new BotConsole("bot console", 800, 500);
@@ -24,6 +28,7 @@ public class DiscordBot {
         gateway = DiscordClient.create(token).login().block();
         status = new BotStatus(gateway);
         commandPrefix = ".";
+        applicationCommandManager = new ApplicationCommandManager(gateway);
         eventSetUp();
     }
 
@@ -40,8 +45,30 @@ public class DiscordBot {
                     .flatMap(entry -> entry.getValue().execute(event))
                     .next()))
             .subscribe();
+
+        gateway.on(MessageInteractionEvent.class)
+            .filter(event -> !event.getInteraction().getMember().get().isBot())
+            .flatMap(event -> Mono.just(event.getCommandName())
+                .filter(name -> applicationCommandManager.messagecommands.containsKey(name))
+                .flatMap(name -> applicationCommandManager.messagecommands.get(name).execute(event)))
+            .subscribe();     
+
+        gateway.on(ChatInputInteractionEvent.class)
+            .filter(event -> !event.getInteraction().getMember().get().isBot())
+            .flatMap(event -> Mono.just(event.getCommandName())
+                .filter(name -> applicationCommandManager.slashcommands.containsKey(name))
+                .flatMap(name -> applicationCommandManager.slashcommands.get(name).execute(event)))
+            .subscribe();  
+
+        gateway.on(UserInteractionEvent.class)
+            .filter(event -> !event.getInteraction().getMember().get().isBot())
+            .flatMap(event -> Mono.just(event.getCommandName())
+                .filter(name -> applicationCommandManager.usercommands.containsKey(name))
+                .flatMap(name -> applicationCommandManager.usercommands.get(name).execute(event)))
+            .subscribe();  
     }
 
+    //getters and setters
     public GatewayDiscordClient getGateway(){
         return gateway;
     }
@@ -62,7 +89,7 @@ public class DiscordBot {
         CommandManager.addCommand(name, command);
     }
 
-    public static boolean getInEvent() {
-		return IN_EVENT;
-	}
+    public ApplicationCommandManager getApplicationCommandManager(){
+        return applicationCommandManager;
+    }
 }

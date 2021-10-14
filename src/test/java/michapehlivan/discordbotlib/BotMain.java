@@ -16,12 +16,13 @@ public class BotMain {
         DiscordBot bot = new DiscordBot("token");
         bot.setPrefix("-");
         bot.status().online().playing(bot.getPrefix() + "help");
-
+        
         JsonWriter writer = new JsonWriter("src\\test\\java\\michapehlivan\\discordbotlib\\Test.json");
         JsonReader reader = new JsonReader("src\\test\\java\\michapehlivan\\discordbotlib\\Test.json");
         List<String> testList = Arrays.asList("entry1", "entry2");
         
         try {
+            writer.clearJson();
             writer.addObject("Key", "Value");
             writer.addArray("Array", testList);
             String value = reader.getValueAsString("Key");
@@ -31,14 +32,19 @@ public class BotMain {
         } catch (KeyException e) {
             e.printStackTrace();
         }
-
+        
         EmbedCreateSpec embed = EmbedCreateSpec.builder()
             .title("test")
+            .footer("footer of test", null)
             .addField("test", "test", false)
             .build();
 
         bot.addCommand("test", event -> 
             event.getMessage().getChannel().block().createMessage(embed).then());
+
+        bot.getApplicationCommandManager().addGuildMessageCommand(new MessageCommandTest(), 699539873773780992L);
+        bot.getApplicationCommandManager().addGuildSlashCommand(new SlashCommandTest(), 699539873773780992L);
+        bot.getApplicationCommandManager().addGuildUserCommand(new UserCommandTest(), 699539873773780992L);
 
         bot.getGateway().onDisconnect().block();
     }
