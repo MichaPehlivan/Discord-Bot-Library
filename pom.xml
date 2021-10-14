@@ -9,8 +9,30 @@
   <version>1.0</version>
 
   <name>botlibrary</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <description>A Java library allowing for quick development of Discord bots</description>
+  <url>https://github.com/MichaPehlivan/Discord-Bot-Library</url>
+
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+
+   <developers>
+    <developer>
+      <name>Micha Pehlivan</name>
+      <email>michaepehlivan2004@gmail.com</email>
+      <organization>MichaPehlivan</organization>
+      <organizationUrl>https://github.com/MichaPehlivan</organizationUrl>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:git://github.com/MichaPehlivan/Discord-Bot-Library.git</connection>
+    <developerConnection>scm:git:ssh://github.com/MichaPehlivan/Discord-Bot-Library.git</developerConnection>
+    <url>https://github.com/MichaPehlivan/Discord-Bot-Library</url>
+  </scm>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
