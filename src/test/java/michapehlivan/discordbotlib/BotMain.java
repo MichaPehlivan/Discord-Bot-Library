@@ -6,7 +6,9 @@ import java.util.List;
 
 import com.google.gson.JsonElement;
 
+import discord4j.core.object.component.ActionRow;
 import discord4j.core.spec.EmbedCreateSpec;
+import discord4j.core.spec.MessageCreateSpec;
 import michapehlivan.discordbotlib.botclient.DiscordBot;
 import michapehlivan.discordbotlib.util.json.JsonReader;
 import michapehlivan.discordbotlib.util.json.JsonWriter;
@@ -41,6 +43,23 @@ public class BotMain {
 
         bot.addCommand("test", event -> 
             event.getMessage().getChannel().block().createMessage(embed).then());
+
+        TestButton button = new TestButton();
+        TestSelectMenu menu = new TestSelectMenu();
+        bot.getComponentManager().addButton(button);
+        bot.getComponentManager().addSelectMenu(menu);
+
+        bot.addCommand("button", event ->
+            event.getMessage().getChannel().block().createMessage(MessageCreateSpec.builder()
+                .content("here is your button:")
+                .addComponent(ActionRow.of(button.getButton()))
+                .build()).then());
+
+        bot.addCommand("select", event ->
+            event.getMessage().getChannel().block().createMessage(MessageCreateSpec.builder()
+                .content("here is your button:")
+                .addComponent(ActionRow.of(menu.getSelectMenu()))
+                .build()).then());
 
         bot.getApplicationCommandManager().addGuildMessageCommand(new MessageCommandTest(), 699539873773780992L);
         bot.getApplicationCommandManager().addGuildSlashCommand(new SlashCommandTest(), 699539873773780992L);
