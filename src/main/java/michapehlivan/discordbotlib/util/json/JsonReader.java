@@ -9,16 +9,25 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+/**
+ * A class for easily reading from a Json file
+ * @author Micha Pehlivan
+ */
 public class JsonReader {
     
     private String jsonPath;
     private Gson gson = new Gson();
     private JsonObject file = new JsonObject();
     
+    /**
+     * Constructor of {@link JsonReader}
+     * @param jsonPath The path to the Json file being read
+     */
     public JsonReader(String jsonPath){
         this.jsonPath = jsonPath;
     }
 
+    //Parses a Json file into a JsonObject
     private JsonObject parseJson(){
         JsonParser parser = new JsonParser();
 
@@ -34,14 +43,29 @@ public class JsonReader {
         return file;
     }
 
+    /**
+     * Read the Json file as a Java String
+     * @return The Json file as a String
+     */
     public String getFileAsString(){
         return gson.toJson(parseJson());
     }
 
+    /**
+     * Read the Json file as a JsonObject (gson)
+     * @return The Json file as a JsonObject
+     */
     public JsonObject getFileAsJsonObject(){
         return parseJson();
     }
 
+    /**
+     * Reads the Json file, and returns the value of the specified key as a String
+     * @param key The key of the value being read
+     * @return The value belonging to the specified key as a Java String
+     * @throws KeyException When the Json file has no value with the specified key
+     * @apiNote This method doesn't work with JsonArrays, please use ValueAsJsonElement() for that
+     */
     public String getValueAsString(String key) throws KeyException{
         parseJson();
         if(file.has(key)){
@@ -57,6 +81,12 @@ public class JsonReader {
         }
     }
 
+    /**
+     * Reads the Json file, and returns the value of the specified key as a JsonElement
+     * @param key The key of the value being read
+     * @return The value belonging to the specified key as a JsonElement
+     * @throws KeyException When the Json file has no value with the specified key
+     */
     public JsonElement getValueAsJsonElement(String key) throws KeyException{
         parseJson();
         if(file.has(key)){

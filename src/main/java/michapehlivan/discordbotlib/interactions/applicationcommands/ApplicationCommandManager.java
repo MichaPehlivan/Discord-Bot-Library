@@ -6,55 +6,86 @@ import java.util.Map;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.discordjson.json.ApplicationCommandData;
 
+/**
+ * Class for managing all application commands 
+ * @author Micha Pehlivan
+ */
 public class ApplicationCommandManager {
+
     public Map<String, MessageCommand> messagecommands = new HashMap<>();
     public Map<String, SlashCommand> slashcommands = new HashMap<>();
     public Map<String, UserCommand> usercommands = new HashMap<>();
 
     private GatewayDiscordClient gateway;
 
-    //constructor
     public ApplicationCommandManager(GatewayDiscordClient gateway){
         this.gateway = gateway;
     }
 
-    //add global message command
+    /**
+     * Add a global Message command to this bot
+     * @param command a class implementing the {@link MessageCommand} interface
+     * @apiNote It can take up to 1 hour for a global command to be added to all servers
+     */
     public void addGlobalMessageCommand(MessageCommand command){
         messagecommands.put(command.name(), command);
         command.createGlobal(gateway);
     }
 
-    //add guild message command
+    /**
+     * Add a guild specific Message command to this bot
+     * @param command A class implementing the {@link MessageCommand} interface 
+     * @param guildId The id of the guild to add this command to
+     */
     public void addGuildMessageCommand(MessageCommand command, long guildId){
         messagecommands.put(command.name(), command);
         command.createGuild(gateway, guildId);
     }
 
-    //add global slash command
+    /**
+     * Add a global Slash command to this bot
+     * @param command A class implementing the {@link SlashCommand} interface
+     * @apiNote It can take up to 1 hour for a global command to be added to all servers
+     */
     public void addGlobalSlashCommand(SlashCommand command){
         slashcommands.put(command.name(), command);
         command.createGlobal(gateway);
     }
 
-    //add guild slash command
+    /**
+     * Add a guild specific Slash command to this bot
+     * @param command A class implementing the {@link SlashCommand} interface
+     * @param guildId The id of the guild to add this command to
+     */
     public void addGuildSlashCommand(SlashCommand command, long guildId){
         slashcommands.put(command.name(), command);
         command.createGuild(gateway, guildId);
     }
 
-    //add global user command
+    /**
+     * Add a global User command to this bot
+     * @param command A class implementing the {@link UserCommand} interface
+     * @apiNote It can take up to 1 hour for a global command to be added to all servers
+     */
     public void addGlobalUserCommand(UserCommand command){
         usercommands.put(command.name(), command);
         command.createGlobal(gateway);
     }
 
-    //add guild user command
+    /**
+     * Add a guild specific User Command to this bot
+     * @param command A class implementing the {@link UserCommand} interface
+     * @param guildId The id of the guild to add this command to
+     */
     public void addGuildUserCommand(UserCommand command, long guildId){
         usercommands.put(command.name(), command);
         command.createGuild(gateway, guildId);
     }
 
-    //remove global command
+    /**
+     * Remove a global application command
+     * @param commandName The name of the command to be removed
+     */
     public void removeGlobalCommand(String commandName){
         long applicationId = gateway.getRestClient().getApplicationId().block();
 
@@ -71,7 +102,11 @@ public class ApplicationCommandManager {
             .subscribe();
     }
 
-    //remove guild command
+    /**
+     * Remove a guild specific application command
+     * @param commandName The name of the command to be removed
+     * @param guildId The id of the guild to remove this command from
+     */
     public void removeGuildCommand(String commandName, long guildId){
         long applicationId = gateway.getRestClient().getApplicationId().block();
 

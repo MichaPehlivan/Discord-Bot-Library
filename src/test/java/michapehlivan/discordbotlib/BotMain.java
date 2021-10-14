@@ -15,12 +15,13 @@ import michapehlivan.discordbotlib.util.json.JsonWriter;
 
 public class BotMain {
     public static void main(String[] args) {
+
         DiscordBot bot = new DiscordBot("token");
         bot.setPrefix("-");
         bot.status().online().playing(bot.getPrefix() + "help");
         
-        JsonWriter writer = new JsonWriter("src\\test\\java\\michapehlivan\\discordbotlib\\Test.json");
-        JsonReader reader = new JsonReader("src\\test\\java\\michapehlivan\\discordbotlib\\Test.json");
+        JsonWriter writer = new JsonWriter("src/test/java/michapehlivan/discordbotlib/Test.json");
+        JsonReader reader = new JsonReader("src/test/java/michapehlivan/discordbotlib/Test.json");
         List<String> testList = Arrays.asList("entry1", "entry2");
         
         try {

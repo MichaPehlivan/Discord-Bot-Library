@@ -12,13 +12,22 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+/**
+ * Class for creating and managing a console window to display output to
+ * @author Micha Pehlivan
+ */
 public class BotConsole extends JFrame{
     
     private JTextArea textArea;
     private JScrollPane scrollPane;
     private PrintStream printer;
 
-    //constructor
+    /**
+     * Constructs a console window with the specified variables
+     * @param title The title of the console window
+     * @param width The widht of the window
+     * @param height The height of the window
+     */
     public BotConsole(String title, int width, int height){
         setSize(width, height);
         setTitle(title);
@@ -26,7 +35,7 @@ public class BotConsole extends JFrame{
         setResizable(true);
         setLocationRelativeTo(null);
         try {
-            setIconImage(ImageIO.read(new File("src\\main\\java\\michapehlivan\\discordbotlib\\util\\discord_icon.png")));
+            setIconImage(ImageIO.read(new File("src/main/java/michapehlivan/discordbotlib/util/discord_icon.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -56,7 +65,10 @@ public class BotConsole extends JFrame{
         setVisible(true);
     }
 
-    //returns the printstream
+    /**
+     * Get the printstream associated with this console window
+     * @return The printstream of this console window
+     */
     public PrintStream getPrintStream(){
         return printer;
     }
