@@ -37,4 +37,5 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/com/discord4j/stores-jdk/3.2.1/stores-jdk-3.2.1.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/com/discord4j/stores-api/3.2.1/stores-api-3.2.1.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/com/austinv11/servicer/Servicer/1.0.3/Servicer-1.0.3.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/com/google/code/gson/gson/2.8.5/gson-2.8.5.jar" enabled="true" runInBatchMode="false"/>
 </factorypath>
