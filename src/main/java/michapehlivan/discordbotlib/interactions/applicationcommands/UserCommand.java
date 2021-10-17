@@ -30,7 +30,7 @@ public interface UserCommand {
 
     /**
      * Execute this command
-     * @param event The {@link MessageInteractionEvent} of this command call
+     * @param event The {@link UserInteractionEvent} of this command call
      * @return A {@link Mono} that, when subscribed to, executes this command
      */
     Mono<Void> execute(UserInteractionEvent event);
