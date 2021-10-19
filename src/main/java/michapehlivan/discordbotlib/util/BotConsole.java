@@ -35,7 +35,7 @@ public class BotConsole extends JFrame{
         setResizable(true);
         setLocationRelativeTo(null);
         try {
-            setIconImage(ImageIO.read(new File("src/main/java/michapehlivan/discordbotlib/util/discord_icon.png")));
+            setIconImage(ImageIO.read(new File("src/main/java/michapehlivan/discordbotlib/resources/discord_icon.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
