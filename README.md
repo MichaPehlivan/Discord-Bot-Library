@@ -1,5 +1,5 @@
 # Discord-Bot-Library
-Java library that acts as an abstraction of https://github.com/Discord4J/Discord4J, allowing for quick development of Discord bots
+Java library that acts as an abstraction of [Discord4J](https://github.com/Discord4J/Discord4J), allowing for quick development of Discord bots
 
 The goal for this project was to greatly simplify the development process of basic and intermidiate level Discord bots using Discord4j, as this is
 currently a somewhat cumbersome process, requiring you to set up systems for commands, interactions, etc. yourself before you can actually start development.
@@ -10,7 +10,7 @@ usecases. For more advanced projects however, the main Discord4j api would be a 
 this library leaves out a lot of systems present in Discord4J.
 
 
-Features of the libary include:
+## Features of the libary
 
 - Managing classic chat-based commands
 
@@ -23,3 +23,15 @@ Features of the libary include:
 - Classes for easily reading and writing to and from Json files
 
 - Easily updating the presence of the Discord bot
+
+## Using the library
+
+```xml
+<dependencies>
+  <dependency>
+    <groupId>io.github.MichaPehlivan</groupId>
+    <artifactId>botlibrary</artifactId>
+    <version>1.0</version>
+  </dependency>
+</dependencies>
+```
