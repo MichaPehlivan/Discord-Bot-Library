@@ -15,6 +15,10 @@ public class BotStatus {
     Status status;
     ClientPresence presence;
 
+    /**
+     * Constructor for {@link BotStatus}
+     * @param gateway The {@link GatewayDiscordClient} of to which this object belongs
+     */
     public BotStatus(GatewayDiscordClient gateway){
         this.gateway = gateway;
     }

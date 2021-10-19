@@ -12,12 +12,27 @@ import discord4j.discordjson.json.ApplicationCommandData;
  */
 public class ApplicationCommandManager {
 
+    /**
+     * {@link Map} containing classes implementing the {@link MessageCommand} interface, using the command names as keys
+     */
     public Map<String, MessageCommand> messagecommands = new HashMap<>();
+
+    /**
+     * {@link Map} containing classes implementing the {@link SlashCommand} interface, using the command names as keys
+     */
     public Map<String, SlashCommand> slashcommands = new HashMap<>();
+
+    /**
+     * {@link Map} containing classes implementing the {@link UserCommand} interface, using the command names as keys
+     */
     public Map<String, UserCommand> usercommands = new HashMap<>();
 
     private GatewayDiscordClient gateway;
 
+    /**
+     * Creates a new {@link ApplicationCommandManager} for managing all application commands
+     * @param gateway The {@link GatewayDiscordClient} to which this manager belongs
+     */
     public ApplicationCommandManager(GatewayDiscordClient gateway){
         this.gateway = gateway;
     }

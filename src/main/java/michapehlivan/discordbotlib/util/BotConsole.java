@@ -18,8 +18,13 @@ import javax.swing.JTextArea;
  */
 public class BotConsole extends JFrame{
     
+    //Textarea of this console
     private JTextArea textArea;
+
+    //Scrollpane of this console
     private JScrollPane scrollPane;
+
+    //Printstream of this console
     private PrintStream printer;
 
     /**
@@ -35,7 +40,7 @@ public class BotConsole extends JFrame{
         setResizable(true);
         setLocationRelativeTo(null);
         try {
-            setIconImage(ImageIO.read(new File("src/main/java/michapehlivan/discordbotlib/resources/discord_icon.png")));
+            setIconImage(ImageIO.read(new File("src/main/resources/discord_icon.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }

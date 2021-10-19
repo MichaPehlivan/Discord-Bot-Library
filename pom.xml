@@ -6,7 +6,7 @@
 
   <groupId> io.github.MichaPehlivan </groupId>
   <artifactId>botlibrary</artifactId>
-  <version>1.1</version>
+  <version>1.2</version>
 
   <name>discord-bot-library</name>
   <description>A Java library with the purpose of greatly 

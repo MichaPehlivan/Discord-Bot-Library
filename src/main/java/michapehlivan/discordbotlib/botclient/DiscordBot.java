@@ -30,6 +30,10 @@ public class DiscordBot {
     private ApplicationCommandManager applicationCommandManager;
     private ComponentManager componentManager;
 
+    /**
+     * Creates a new {@link DiscordBot} object
+     * @param token The token of this Discord bot
+     */
     public DiscordBot(String token){
         BotConsole console = new BotConsole("bot console", 800, 500);
         System.setOut(console.getPrintStream());

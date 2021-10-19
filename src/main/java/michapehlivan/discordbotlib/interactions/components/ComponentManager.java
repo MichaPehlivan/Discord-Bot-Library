@@ -9,7 +9,14 @@ import java.util.Map;
  */
 public class ComponentManager {
 
+    /**
+     * {@link Map} containing classes implementing the {@link DiscordButton} interface, using the customIds of the buttons as keys
+     */
     public Map<String, DiscordButton> discordbuttons = new HashMap<>();
+
+    /**
+     * {@link Map} containing classes implementing the {@link DiscordSelectMenu} interface, using the customIds of the menus as keys
+     */
     public Map<String, DiscordSelectMenu> selectmenus = new HashMap<>();
 
     /**

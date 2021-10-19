@@ -9,6 +9,9 @@ import java.util.Map;
  */
 public class CommandManager {
 
+    /**
+     * {@link Map} Containing classes implementing the {@link Command} interface, using the command names as keys
+     */
     public static Map<String, Command> commands = new HashMap<>();
 
     /**
