@@ -2,7 +2,6 @@ package michapehlivan.discordbotlib.util;
 
 import java.awt.Font;
 import java.awt.Color;
-import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -40,7 +39,7 @@ public class BotConsole extends JFrame{
         setResizable(true);
         setLocationRelativeTo(null);
         try {
-            setIconImage(ImageIO.read(new File("src/main/resources/discord_icon.png")));
+            setIconImage(ImageIO.read(BotConsole.class.getResource("/discord_icon.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
