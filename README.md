@@ -35,3 +35,55 @@ this library leaves out a lot of systems present in Discord4J.
   </dependency>
 </dependencies>
 ```
+- - - - 
+
+## Tutorial
+
+When using the library, start by creating a `DiscordBot` object:
+```java
+DiscordBot bot = new DiscordBot("token");
+```
+Here "token" is the token of your Discord bot, which you can get through the Discord developer portal. You can put this in the main loop of your code, and end the loop with `bot.getGateway().onDisconnect().block();` to keep the bot running until you close the program.
+
+From here you can set the bot's command prefix with:
+```java
+bot.setPrefix("prefix");
+```
+And the bots presence with:
+```java
+bot.status().online().playing("playing status")
+```
+The library supports the `online`, `offline`, `idle`, `donotdisturb`, `invisible` and `unknown` status,
+and the `playing`, `listening`, `streaming`, `watching` and `competing` activities.
+
+To add a classic chat based command, you can use the `addCommand(String name, Command command)` method. Here `name` is the name of the command, which you will use to call the command in Discord, and `command` either a class or a lambda statement implementing the `Command` interface. For example: 
+```java
+bot.addCommand("ping", event -> 
+  event.getMessage().getChannel().block().createMessage("Pong!").then());
+``` 
+This adds a command that responds with "Pong!" to any message starting with your prefix and "ping".
+
+### Interactions
+The library fully supports application commands(Message, Slash and User commands), and components(Buttons and Select menus). To use any interaction, you need to implement the appropriate class. These classes are `MessageCommand`, `SlashCommand`, `UserCommand`, `DiscordButton` and `DiscordSelectMenu`. 
+
+An application command can be added to all Discord servers by using:
+```java
+bot.getApplicationCommandManager().addGlobalMessageCommand(new MessageCommandExample());
+```
+Where `MessageCommandExample` is a class implementing the `MessageCommand` interface.
+
+You can also add a command to a specific Discord server by using:
+```java
+bot.getApplicationCommandManager().addGuildMessageCommand(new MessageCommandExample(), 699536873778780392L);
+```
+Where the long is the id of the Discord server you want to add the command to.
+
+Using Buttons and Select menus is even easyer. You can simply use a `MessageCreateSpec` and attach the component to it:
+```java
+MessageCreateSpec.builder()
+  .addComponent(ActionRow.of(new ExampleButton().getButton()))
+  .build();
+``` 
+Where `ExampleButton` is a class implementing the `DiscordButton` interface.
+
+More detailed information can be found in the javadoc.
