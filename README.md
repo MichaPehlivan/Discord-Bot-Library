@@ -86,4 +86,4 @@ MessageCreateSpec.builder()
 ``` 
 Where `ExampleButton` is a class implementing the `DiscordButton` interface.
 
-More detailed information can be found in the javadoc.
+An example bot can be found in the `test` folder, and more detailed information on classes and methods can be found in the javadoc.
