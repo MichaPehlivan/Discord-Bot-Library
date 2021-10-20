@@ -31,7 +31,7 @@ this library leaves out a lot of systems present in Discord4J.
   <dependency>
     <groupId>io.github.MichaPehlivan</groupId>
     <artifactId>botlibrary</artifactId>
-    <version>1.2</version>
+    <version>1.3</version>
   </dependency>
 </dependencies>
 ```
