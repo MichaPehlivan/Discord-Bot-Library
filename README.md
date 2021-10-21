@@ -9,7 +9,7 @@ It should be sufficient for the most common
 usecases. For more advanced projects however, the main Discord4J api would be a better choice, as you are more directly communicating with Discord, and
 this library leaves out a lot of systems present in Discord4J.
 
-**please note: it is highly recommended to have some experience with using Discord4J when using this library**
+**please note: it is highly recommended to have some experience with Discord4J when using this library**
 
 
 ## Features of the libary
