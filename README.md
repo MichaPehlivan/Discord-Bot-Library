@@ -3,7 +3,8 @@ Java library that acts as an abstraction of [Discord4J](https://github.com/Disco
 
 The goal for this project was to greatly simplify the development process of basic and intermidiate level Discord bots using Discord4J, as this is
 currently a somewhat cumbersome process, requiring you to set up systems for commands, interactions, etc. yourself before you can actually start development.
-This library takes care of most of that setup in the background, leaving you to do the actual development of the bot. Please refer to the [Discord4J docs](https://docs.discord4j.com/) if you if you need help with Discord4J.
+This library takes care of most of that setup in the background, leaving you to do the actual development of the bot. Please refer to the 
+[Discord4J docs](https://docs.discord4j.com/) if you if you are unsure about a Discord4J feature.
 
 It should be sufficient for the most common 
 usecases. For more advanced projects however, the main Discord4J api would be a better choice, as you are more directly communicating with Discord, and
