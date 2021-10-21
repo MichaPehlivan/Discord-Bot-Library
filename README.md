@@ -27,6 +27,9 @@ this library leaves out a lot of systems present in Discord4J.
 
 - Easily updating the presence of the Discord bot
 
+## Contributing
+If you want to contribute to the project, simply leave an issue or pull request, and I'll take a look at it.
+
 ## Using the library
 
 ```xml
